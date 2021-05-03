@@ -3,9 +3,9 @@ package database
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"integration_NewThread/config"
-	"integration_NewThread/models"
-	"integration_NewThread/utils"
+	"integration_server/config"
+	"integration_server/models"
+	"integration_server/utils"
 	"strings"
 	"time"
 )
