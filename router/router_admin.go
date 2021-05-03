@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"integration_server/controllers"
+)
 
 // AdminGroup 管理路由组
 func AdminGroup(group *gin.RouterGroup) {
@@ -27,17 +30,19 @@ func AdminUserGroup(adminUser *gin.RouterGroup) {
 func AdminAwardGroup(adminAward *gin.RouterGroup) {
 	adminAward.POST("/add", controllers.AdminAwardAdd)
 	adminAward.POST("/edit", controllers.AdminAwardEdit)
+	adminAward.GET("/status", controllers.AdminAwardStatus)
+	adminAward.GET("/list", controllers.AdminAwardList)
 	adminAward.GET("/delete", controllers.AdminAwardDel)
 }
 
 // AdminAwardDetailGroup 奖品兑换明细子路由组
 func AdminAwardDetailGroup(awardDetail *gin.RouterGroup) {
-	awardDetail.GET("/download", controllers.AwardDetailDown)
+	awardDetail.GET("/download", controllers.AwardDetailsDown)
 }
 
 // AdminIntegrationDetailGroup 积分兑换明细子路由组
 func AdminIntegrationDetailGroup(integrationDetail *gin.RouterGroup) {
-	integrationDetail.GET("/download", controllers.IntegrationDetailDown)
+	integrationDetail.GET("/download", controllers.IntegrationDetailsDown)
 }
 
 // AdminIntegrationApplyGroup 积分审核子路由组

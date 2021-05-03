@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"integration_server/controllers"
+)
 
 // AwardGroup 奖品路由组
 func AwardGroup(group *gin.RouterGroup) {

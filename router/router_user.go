@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"integration_server/controllers"
+)
 
 // UserGroup 用户路由组
 func UserGroup(group *gin.RouterGroup) {
