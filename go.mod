@@ -1,4 +1,4 @@
-module integration_NewThread
+module integration_server
 
 go 1.15
 
