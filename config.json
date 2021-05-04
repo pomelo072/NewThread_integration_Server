@@ -2,7 +2,7 @@
   "Port": ":8086",
   "DBUserName": "root",
   "DBPassword": "Lzx650810",
-  "DBIp": "127.0.0.1",
+  "DBIp": "172.19.0.2",
   "DBPort": "3306",
   "DBName": "integration_test",
   "Admin": "Thread_New",
