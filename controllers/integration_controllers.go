@@ -19,8 +19,8 @@ func IntegrationApply(ctx *gin.Context) {
 	} else {
 		var applyInfo json_struct.IntegrationModel
 		// 不允许字段为空
-		if ctx.ShouldBindJSON(&applyInfo) != nil {
-			ctx.JSON(http.StatusNoContent, utils.GetReturnData(gin.H{"messaga": "Something Empty."}, "ERROR"))
+		if err := ctx.BindJSON(&applyInfo); err != nil {
+			ctx.JSON(http.StatusNoContent, utils.GetReturnData(gin.H{"message": "Something Empty."}, "ERROR"))
 			return
 		}
 		// 上传Handler
@@ -33,7 +33,7 @@ func IntegrationApply(ctx *gin.Context) {
 func IntegrationApplyDel(ctx *gin.Context) {
 	// 获取用户信息和申请记录ID
 	user, _ := ctx.Get("user")
-	id := ctx.DefaultQuery("id", "0")
+	id := ctx.Query("id")
 	userclaims := user.(*json_struct.UserClaims)
 	// Admin拒绝访问
 	if userclaims.Auth == 0 {

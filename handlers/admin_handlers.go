@@ -12,19 +12,16 @@ import (
 )
 
 // UserAddAdmin 新增用户Handler
-func UserAddAdmin(group *json_struct.UserAdd) string {
+func UserAddAdmin(user *json_struct.User) string {
 	// 遍历JSON
-	for _, user := range group.Users {
-		// 新增用户
-		database.Db.Create(&models.UserInfo{
-			UID:              user.UID,
-			UserGroup:        user.Group,
-			UserIntegration:  0,
-			TeamIntegration:  0,
-			UserVerification: utils.GetSHAEncode(utils.GetSHAEncode(user.UID)),
-			AUTH:             1,
-		})
-	}
+	database.Db.Create(&models.UserInfo{
+		UID:              user.UID,
+		UserGroup:        user.Group,
+		UserIntegration:  0,
+		TeamIntegration:  0,
+		UserVerification: utils.GetSHAEncode(utils.GetSHAEncode(user.UID)),
+		AUTH:             1,
+	})
 	return "Add User successfully."
 }
 

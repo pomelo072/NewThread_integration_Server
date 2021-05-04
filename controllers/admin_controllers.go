@@ -12,14 +12,15 @@ import (
 func AdminUserAdd(ctx *gin.Context) {
 	user, _ := ctx.Get("user")
 	userclaims := user.(*json_struct.UserClaims)
-	var group json_struct.UserAdd
+	var userinfo json_struct.User
 	// 管理组鉴权
 	if userclaims.Auth == 0 {
 		// 获取JSON
-		if ctx.ShouldBindJSON(&group) != nil {
-			result := handlers.UserAddAdmin(&group)
-			ctx.JSON(http.StatusOK, utils.GetReturnData(gin.H{"message": result}, "SUCCESS"))
+		if ctx.ShouldBindJSON(&userinfo) != nil {
+			ctx.JSON(http.StatusOK, utils.GetReturnData(gin.H{"message": "Empty Content."}, "ERROR"))
 		}
+		result := handlers.UserAddAdmin(&userinfo)
+		ctx.JSON(http.StatusOK, utils.GetReturnData(gin.H{"message": result}, "SUCCESS"))
 	} else {
 		ctx.JSON(http.StatusForbidden, utils.GetReturnData(gin.H{"message": "Access Defined"}, "ERROR"))
 	}

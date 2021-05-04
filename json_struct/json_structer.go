@@ -23,23 +23,18 @@ type UserClaims struct {
 
 // IntegrationModel 用户提交申请JSON模型
 type IntegrationModel struct {
-	IntegrationType int      `json:"integration_type" binding:"required"`
-	ApplyText       string   `json:"apply_text" binding:"required"`
-	ApplyType       string   `json:"apply_type" binding:"required"`
-	ApplyLevel      string   `json:"apply_level" binding:"required"`
-	ContestLevel    string   `json:"contest_level" binding:"required"`
-	ApplyIMG        []string `json:"apply_img" binding:"required"`
+	IntegrationType int      `json:"integration_type"`
+	ApplyText       string   `json:"apply_text"`
+	ApplyType       string   `json:"apply_type"`
+	ApplyLevel      string   `json:"apply_level"`
+	ContestLevel    string   `json:"contest_level"`
+	ApplyIMG        []string `json:"apply_img"`
 }
 
-// User 用户JSON结构
+// User 新增用户JSON模型
 type User struct {
-	UID   string
-	Group string
-}
-
-// UserAdd 新增用户JSON模型
-type UserAdd struct {
-	Users []User `json:"users" binding:"required"`
+	UID   string `json:"uid" binding:"required"`
+	Group string `json:"group" binding:"required"`
 }
 
 // Award 奖品JSON模型

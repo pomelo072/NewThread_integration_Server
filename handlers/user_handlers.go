@@ -39,8 +39,8 @@ func InfoUser(userclaims *json_struct.UserClaims) *gin.H {
 	auth := userclaims.Auth
 	// 查询信息
 	if auth == 1 {
-		database.Db.Select("username", "usergroup", "userhead_url",
-			"userintegration", "teamintegration").First(&info, "uid = ?", userclaims.Uid)
+		database.Db.Select("user_name", "user_group",
+			"user_integration", "team_integration", "auth").First(&info, "uid = ?", userclaims.Uid)
 		// 打包信息返回
 		return utils.GetReturnData(&gin.H{
 			"name":       info.UserName,
@@ -50,7 +50,7 @@ func InfoUser(userclaims *json_struct.UserClaims) *gin.H {
 			"auth":       auth,
 		}, "SUCCESS")
 	} else {
-		database.Db.Select("username", "userhead_url").First(&info, "uid = ?", userclaims.Uid)
+		database.Db.Select("user_name", "user_group", "auth").First(&info, "uid = ?", userclaims.Uid)
 		// 打包信息返回
 		return utils.GetReturnData(&gin.H{
 			"name":     info.UserName,
@@ -78,7 +78,7 @@ func PersonIntegrationDetail(userclaims *json_struct.UserClaims) *gin.H {
 	uid := userclaims.Uid
 	// 查询UID下的个人积分
 	var PersonIntegration []map[string]interface{}
-	database.Db.Model(&models.UserInfo{}).Where("uid = ?", uid).Find(&PersonIntegration)
+	database.Db.Model(&models.IntegrationDetail{}).Where("integration_uid = ?", uid).Find(&PersonIntegration)
 	return &gin.H{"Data": PersonIntegration}
 }
 
@@ -87,6 +87,6 @@ func PersonAwardDetail(userclaims *json_struct.UserClaims) *gin.H {
 	uid := userclaims.Uid
 	// 查询UID下的个人兑换
 	var PersonAward []map[string]interface{}
-	database.Db.Model(&models.UserInfo{}).Where("uid = ?", uid).Find(&PersonAward)
+	database.Db.Model(&models.AwardDetail{}).Where("award_uid = ?", uid).Find(&PersonAward)
 	return &gin.H{"Data": PersonAward}
 }

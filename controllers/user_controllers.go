@@ -47,7 +47,7 @@ func UserEdit(ctx *gin.Context) {
 	userclaims := user.(*json_struct.UserClaims)
 	var userEditor json_struct.UserEditor
 	// 查询绑定的模型
-	if ctx.BindJSON(&userEditor) == nil {
+	if ctx.BindJSON(&userEditor) != nil {
 		ctx.JSON(http.StatusNoContent, utils.GetReturnData(gin.H{"message": "empty content"}, "ERROR"))
 		return
 	}

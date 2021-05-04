@@ -6,5 +6,5 @@
   "DBPort": "3306",
   "DBName": "integration_test",
   "Admin": "Thread_New",
-  "AdminVerify": "N_e@w!Thread",
+  "AdminVerify": "N_e@w!Thread"
 }
